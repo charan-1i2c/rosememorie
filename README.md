@@ -1,6 +1,10 @@
 # 🌹 RoseMemoire
 
+# 🌹 RoseMemoire
+
 ### Where words bloom, and memories take root.
+
+🌐 **Live here:** [RoseMemoire](https://rosememorie.vercel.app/)
 
 **RoseMemoire** is an interactive botanical art experience that transforms typed words into a living digital garden. As you type, roses bloom, vines weave around your text, and delicate botanical elements grow across a dark, cinematic canvas.
 
