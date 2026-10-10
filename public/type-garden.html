@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>rosememoire</title>
+<title>rosemorie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -350,7 +350,7 @@ class Garden {
   exportArtwork() {
     if (!this.frozen) return;
     this.paint(this.frozenNow, 'frozen');
-    this.cv.toBlob(b => b && this.dl(b, 'rosememoire-artwork.png'));
+    this.cv.toBlob(b => b && this.dl(b, 'rosemorie-artwork.png'));
   }
   // Garden Memory: deterministic state only (chars + seeds + palette), never pixels — a few hundred bytes
   saveGarden() {
@@ -359,13 +359,13 @@ class Garden {
         ? { ch: ' ', id: l.id }
         : { ch: l.ch, id: l.id, ws: l.ws, wi: l.wi, gs: l.gs ?? null, ts: l.ts ?? null, es: l.endEls ? (l.es ?? null) : null });
       if (!L.some(l => l.ch !== ' ')) { this.toast('Nothing to save yet'); return; }
-      localStorage.setItem('rosememoire-garden-save', JSON.stringify({ v: 1, pal: this.state.palette, L }));
+      localStorage.setItem('rosemorie-garden-save', JSON.stringify({ v: 1, pal: this.state.palette, L }));
       this.toast('Garden saved to memory');
     } catch (e) { this.toast('Could not save garden'); }
   }
   restoreGarden() {
     let d = null;
-    try { d = JSON.parse(localStorage.getItem('rosememoire-garden-save') || 'null'); } catch (e) { d = null; }
+    try { d = JSON.parse(localStorage.getItem('rosemorie-garden-save') || 'null'); } catch (e) { d = null; }
     if (!d || !Array.isArray(d.L) || !d.L.some(l => l.ch !== ' ')) { this.toast('No saved garden found'); return; }
     if (this.frozen) this.resume();
     const born = performance.now() - 10000; // restored fully grown — no replay of the bloom
@@ -1198,7 +1198,7 @@ class Garden {
   }
   savePNG() {
     this.paint(performance.now(), false);
-    this.cv.toBlob(b => b && this.dl(b, 'rosememoire.png'));
+    this.cv.toBlob(b => b && this.dl(b, 'rosemorie.png'));
   }
   // SVG: the garden as shapes; letters stay live text in Playfair Display
   saveSVG() {
@@ -1213,9 +1213,9 @@ class Garden {
     };
     this.render(B, performance.now(), this.mainState());
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${n(this.W)}" height="${n(this.H)}" viewBox="0 0 ${n(this.W)} ${n(this.H)}"><rect width="100%" height="100%" fill="${this.pal().bg}"/>${parts.join('')}</svg>`;
-    this.dl(new Blob([svg], { type: 'image/svg+xml' }), 'rosememoire.svg');
+    this.dl(new Blob([svg], { type: 'image/svg+xml' }), 'rosemorie.svg');
   }
-  fname() { return 'rosememoire-' + (this.state.text || 'loop').trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase().slice(0, 24) + '-' + this.state.preset; }
+  fname() { return 'rosemorie-' + (this.state.text || 'loop').trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase().slice(0, 24) + '-' + this.state.preset; }
   async exportVideo() {
     if (!this.vmime || this.state.busy) { this.setS({ status: 'Video export isn’t supported in this browser — use PNG frames.' }); return; }
     const P = this.P, c = document.createElement('canvas'); c.width = c.height = 1080;
