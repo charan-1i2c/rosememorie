@@ -160,6 +160,16 @@ body {
   }
 }
 
+.rose-loading {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rose-loading {
+    transition: none;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
