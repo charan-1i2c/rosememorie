@@ -43,7 +43,7 @@ export default function Page() {
           <img
             src="/rose-loading.png"
             alt=""
-            className="max-h-[78vh] max-w-[78vw] object-contain"
+            className="max-h-[62vh] max-w-[62vw] object-contain"
           />
         </div>
       )}
